@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "npx prettier . --check",
     "format:fix": "npx prettier . --write",
     "prepare": "husky install"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Maksern/node-lab2-router.git"
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/Maksern/node-lab2-router#readme",
   "devDependencies": {
+    "@types/node": "^18.19.3",
     "eslint": "^8.56.0",
     "eslint-config-semistandard": "^17.0.0",
     "eslint-config-standard": "^17.1.0",
