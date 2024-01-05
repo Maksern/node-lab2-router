@@ -4,8 +4,8 @@ import messageRouter from "./src/messageRouter.js";
 
 const PORT = 5000;
 const app = new Application();
-app.addRouter(userRouter);
 app.addRouter(messageRouter);
+app.addRouter(userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server success started on port ${PORT}`);

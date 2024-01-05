@@ -25,16 +25,29 @@ class Application {
 
   #createServer() {
     return http.createServer(async (req, res) => {
-      const emitted = this.eventEmitter.emit(
-        this.#getRouterMask(req.url, req.method),
-        req,
-        res,
-      );
-      if (!emitted) {
-        res.end();
-      }
+      let body = "";
+
+      req.on("data", (chunk) => {
+        body += chunk;
+      });
+
+      req.on("end", () => {
+        if (body) {
+          req.body = JSON.parse(body);
+        }
+
+        const emitted = this.eventEmitter.emit(
+          this.#getRouterMask(req.url, req.method),
+          req,
+          res,
+        );
+        if (!emitted) {
+          res.end("This is default page. Try url /users or /messages");
+        }
+      });
     });
   }
+
   #getRouterMask(path, method) {
     return `[${path}]:[${method}]`;
   }

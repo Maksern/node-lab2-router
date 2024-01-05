@@ -1,5 +1,4 @@
 import Router from "../routerFramework/Router.js";
-
 const messageRouter = new Router();
 
 const messages = [
@@ -15,6 +14,14 @@ const messages = [
 messageRouter.get("/messages", (req, res) => {
   res.writeHead(200, { "Content-type": "application/json" });
   return res.end(JSON.stringify(messages));
+});
+
+messageRouter.post("/messages", (req, res) => {
+  const message = req.body;
+  messages.push(message);
+
+  res.writeHead(200, { "Content-type": "application/json" });
+  return res.end(JSON.stringify(message));
 });
 
 export default messageRouter;
